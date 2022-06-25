@@ -78,6 +78,12 @@ RUN chown nobody.nobody /usr/src/wordpress/wp-secrets.php && chmod 640 /usr/src/
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
 
+ENV DB_HOST db
+ENV DB_NAME wordpress
+ENV DB_USER wp
+ENV DB_PASSWORD secret
+ENV FS_METHOD direct
+
 EXPOSE 80
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
